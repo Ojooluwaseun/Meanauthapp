@@ -54,15 +54,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000';
     }
     AuthService.prototype.registerUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
-        return this.http.post(this.url + "/users/register", user, { headers: headers });
+        return this.http.post("/users/register", user, { headers: headers });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
-        return this.http.post(this.url + "/users/authenticate", user, { headers: headers });
+        return this.http.post("/users/authenticate", user, { headers: headers });
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);
@@ -80,7 +79,7 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getProfile = function () {
         this.loadToken();
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authToken });
-        return this.http.get(this.url + "/users/profile", { headers: headers });
+        return this.http.get("/users/profile", { headers: headers });
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
@@ -125,7 +124,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar><app-navbar></app-navbar></mat-toolbar>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n\n\n"
+module.exports = "\n<mat-toolbar><app-navbar></app-navbar></mat-toolbar>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n\n"
 
 /***/ }),
 
@@ -460,7 +459,7 @@ var LoginComponent = /** @class */ (function () {
             password: this.password
         };
         this.authService.authenticateUser(user).subscribe(function (data) {
-            if (data) {
+            if (data['success']) {
                 _this.authService.storeUserData(data['token'], data['user']);
                 _this.toastr.success('Have fun!', 'Login Successful', { timeOut: 3000 });
                 _this.router.navigate(['/dashboard']);
@@ -833,15 +832,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000';
     }
     AuthService.prototype.registerUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
-        return this.http.post(this.url + "/users/register", user, { headers: headers });
+        return this.http.post("/users/register", user, { headers: headers });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
-        return this.http.post(this.url + "/users/authenticate", user, { headers: headers });
+        return this.http.post("/users/authenticate", user, { headers: headers });
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);
@@ -859,7 +857,7 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getProfile = function () {
         this.loadToken();
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authToken });
-        return this.http.get(this.url + "/users/profile", { headers: headers });
+        return this.http.get("/users/profile", { headers: headers });
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');

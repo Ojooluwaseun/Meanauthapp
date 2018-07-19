@@ -8,12 +8,14 @@ import passport from 'passport';
 import config from './config/database'
 import users from './routes/users';
 
+var port = process.env.BACKEND_PORT || process.env.PORT || 3000;
+
 //database connection
-mongoose.connect(config.database);
+mongoose.connect(config.db.uri);
 
 //On Connection
 mongoose.connection.on('connected', () => {
-    console.log('Connected to database '+config.database)
+    console.log('Connected to database '+config.db.uri)
 })
 
 //On Error
@@ -41,4 +43,4 @@ app.get('/', (req, res) => {
     res.send('Invalid Endpoint')
 })
 
-app.listen(3000, () => console.log('Express server running on port 3000'));
+app.listen(port, () => console.log('Express server running on port ' + port));
