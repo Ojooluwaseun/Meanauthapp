@@ -11,14 +11,17 @@ import users from './routes/users';
 var port = process.env.BACKEND_PORT || process.env.PORT || 3000;
 
 //database connection
-mongoose.connect(config.db.uri);
+//mongoose.connect(config.db.uri);
+
+const encodedPassword = encodeURIComponent('E2svUHaKTeOJatSK8FUJ0EOPOcI0Mf14j3o1ll0oz69JpNCNMXWvrWQjRUshzqBVxl7PaPMIqI5v5YvPD4ahAg==');
+mongoose.connect(`mongodb://meanauth-app:${encodedPassword}@meanauth-app.documents.azure.com:10255/?ssl=true&replicaSet=globaldb`);
 
 //On Connection
 mongoose.connection.on('connected', () => {
-    console.log('Connected to database '+config.db.uri)
+    console.log('Connected to database')
 })
 
-//On Error
+//On Error 
 mongoose.connection.on('error', (err) => {
     console.log('Connection error: '+err)
 })
