@@ -7,7 +7,6 @@ import passport from 'passport';
 
 import config from './config/database'
 import users from './routes/users';
-
 var port = process.env.BACKEND_PORT || process.env.PORT || 3000;
 
 //database connection
