@@ -1,4 +1,5 @@
 import User from '../models/user';
+import adminUser from '../models/admin-user';
 import config from '../config/database';
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;

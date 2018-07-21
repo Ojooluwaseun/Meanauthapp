@@ -63,6 +63,10 @@ var AuthService = /** @class */ (function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
         return this.http.post("/users/authenticate", user, { headers: headers });
     };
+    AuthService.prototype.authenticateadminUser = function (user) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
+        return this.http.post("/admin-users/authenticate", user, { headers: headers });
+    };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);
         localStorage.setItem('user', JSON.stringify(user));
@@ -186,13 +190,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
 /* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+/* harmony import */ var _components_admin_login_admin_login_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/admin-login/admin-login.component */ "./src/app/components/admin-login/admin-login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -219,12 +224,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var appRoutes = [
-    { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"] },
-    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_12__["RegisterComponent"] },
+    { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"] },
+    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_13__["RegisterComponent"] },
     { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"] },
-    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_14__["DashboardComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_18__["AuthGuard"]] },
-    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_15__["ProfileComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_18__["AuthGuard"]] },
+    { path: 'adminlogin', component: _components_admin_login_admin_login_component__WEBPACK_IMPORTED_MODULE_12__["AdminLoginComponent"] },
+    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["DashboardComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"]] },
+    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"]] },
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -235,10 +242,12 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
                 _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__["NavbarComponent"],
                 _components_login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_12__["RegisterComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_14__["DashboardComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_15__["ProfileComponent"]
+                _components_admin_login_admin_login_component__WEBPACK_IMPORTED_MODULE_12__["AdminLoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_13__["RegisterComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["DashboardComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"],
+                _components_admin_login_admin_login_component__WEBPACK_IMPORTED_MODULE_12__["AdminLoginComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -251,11 +260,104 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatToolbarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatGridListModule"],
                 _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MatCommonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatSidenavModule"]
             ],
-            providers: [_services_validate_service__WEBPACK_IMPORTED_MODULE_16__["ValidateService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_17__["AuthService"], _guards_auth_guard__WEBPACK_IMPORTED_MODULE_18__["AuthGuard"]],
+            providers: [_services_validate_service__WEBPACK_IMPORTED_MODULE_17__["ValidateService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_18__["AuthService"], _guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/admin-login/admin-login.component.css":
+/*!******************************************************************!*\
+  !*** ./src/app/components/admin-login/admin-login.component.css ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".example-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nmat-card {\r\n  max-width: 400px;\r\n  margin: 2em auto;\r\n  text-align: center;\r\n}\r\n\r\n.signin-content {\r\n  padding: 60px 1rem;\r\n}\r\n\r\n.full-width-input {\r\n  width: 100%;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/components/admin-login/admin-login.component.html":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/admin-login/admin-login.component.html ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-card class=\"mat-card\">\n<form>\n  <h3>Login</h3>\n  <div class=\"example-container\">\n  <mat-form-field>\n    <input matInput name=\"username\" placeholder=\"name\" [(ngModel)]=\"username\" ngControl=\"username\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput name=\"password\" placeholder=\"password\" [(ngModel)]=\"password\" ngControl=\"password\" required [type]=\"hide ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\n  </mat-form-field>\n</div>\n</form>\n<button mat-button color=\"primary\" (click)=\"onLoginSubmit()\" type=\"button\">Submit</button>\n</mat-card>\n\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/components/admin-login/admin-login.component.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/admin-login/admin-login.component.ts ***!
+  \*****************************************************************/
+/*! exports provided: AdminLoginComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminLoginComponent", function() { return AdminLoginComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AdminLoginComponent = /** @class */ (function () {
+    function AdminLoginComponent(authService, toastr, router) {
+        this.authService = authService;
+        this.toastr = toastr;
+        this.router = router;
+        this.hide = true;
+    }
+    AdminLoginComponent.prototype.ngOnInit = function () {
+    };
+    AdminLoginComponent.prototype.onLoginSubmit = function () {
+        var _this = this;
+        var user = {
+            username: this.username,
+            password: this.password
+        };
+        this.authService.authenticateadminUser(user).subscribe(function (data) {
+            if (data['success']) {
+                _this.authService.storeUserData(data['token'], data['user']);
+                _this.toastr.success('Have fun!', 'Login Successful', { timeOut: 3000 });
+                _this.router.navigate(['/dashboard']);
+            }
+            else {
+                _this.toastr.error(data['msg'], 'Login Failed', { timeOut: 3000 });
+                _this.router.navigate(['/adminlogin']);
+            }
+        });
+    };
+    AdminLoginComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-admin-login',
+            template: __webpack_require__(/*! ./admin-login.component.html */ "./src/app/components/admin-login/admin-login.component.html"),
+            styles: [__webpack_require__(/*! ./admin-login.component.css */ "./src/app/components/admin-login/admin-login.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AdminLoginComponent);
+    return AdminLoginComponent;
 }());
 
 
@@ -505,7 +607,7 @@ module.exports = ".fill-remaining-space {\r\n      flex: 1 1 auto;\r\n      colo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
+module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn() && authService.authenticateUser()\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>User Login</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/adminlogin']\"><mat-icon>input</mat-icon><span>Admin Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
 
 /***/ }),
 
@@ -712,7 +814,7 @@ var RegisterComponent = /** @class */ (function () {
             username: this.username,
             password: this.password
         };
-        // Required Fields
+        //Unique fields
         if (!this.validateService.validateRegister(user)) {
             this.toastr.error('Please fill in all fields', 'Form Error', { timeOut: 3000 });
             return false;
@@ -729,7 +831,7 @@ var RegisterComponent = /** @class */ (function () {
                 _this.router.navigate(['/login']);
             }
             else {
-                _this.toastr.error('Please try again!', 'Registration Failed', { timeOut: 3000 });
+                _this.toastr.error('Username already taken', 'Registration Failed', { timeOut: 3000 });
                 _this.router.navigate(['/register']);
             }
         });
@@ -840,6 +942,10 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
         return this.http.post("/users/authenticate", user, { headers: headers });
+    };
+    AuthService.prototype.authenticateadminUser = function (user) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' });
+        return this.http.post("/admin-users/authenticate", user, { headers: headers });
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);

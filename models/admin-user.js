@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import config from '../config/database';
 
 var uniqueValidator = require('mongoose-unique-validator');
-const UserSchema = mongoose.Schema({
+const adminUserSchema = mongoose.Schema({
     name: {
         type: String
     },
@@ -19,44 +19,28 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    university:{
-        type: String,
-        required: true
-    },
-    course:{
-        type: String,
-        required: true
-    },
-    career:{
-        type: String,
-        required: true
-    },
-    skill:{
-        type: String,
-        required: true
     }
 });
 
-UserSchema.plugin(uniqueValidator, { message: 'Error, expected to be unique.'});
+adminUserSchema.plugin(uniqueValidator, { message: 'Error, expected to be unique.'});
 
-const User = module.exports =mongoose.model('User', UserSchema);
+const adminUser = module.exports =mongoose.model('adminUser', adminUserSchema);
 
 module.exports.getUserById = function(id, callback) {
-    User.findById(id, callback);
+    adminUser.findById(id, callback);
 }
 
 module.exports.getUserByUsername = function(username, callback) {
     const query = {username: username}
-    User.findOne(query, callback);
+    adminUser.findOne(query, callback);
 }
 
-module.exports.addUser = function(newUser, callback) {
+module.exports.addUser = function(newadminUser, callback) {
     bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
+        bcrypt.hash(newadminUser.password, salt, (err, hash) => {
             if(err) throw err;
-            newUser.password = hash;
-            newUser.save(callback);
+            newadminUser.password = hash;
+            newadminUser.save(callback);
         });
     
     })

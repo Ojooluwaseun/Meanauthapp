@@ -7,13 +7,18 @@ import passport from 'passport';
 
 import config from './config/database'
 import users from './routes/users';
+import adminusers from './routes/admin-users';
 var port = process.env.BACKEND_PORT || process.env.PORT || 3000;
 
 //database connection
 //mongoose.connect(config.db.uri);
+mongoose.Promise = global.Promise;
 
 const encodedPassword = encodeURIComponent('E2svUHaKTeOJatSK8FUJ0EOPOcI0Mf14j3o1ll0oz69JpNCNMXWvrWQjRUshzqBVxl7PaPMIqI5v5YvPD4ahAg==');
-mongoose.connect(`mongodb://meanauth-app:${encodedPassword}@meanauth-app.documents.azure.com:10255/?ssl=true&replicaSet=globaldb`);
+const mongoUri = `mongodb://meanauth-app:${encodedPassword}@meanauth-app.documents.azure.com:10255/?ssl=true&replicaSet=globaldb`
+
+
+mongoose.connect(mongoUri);
 
 //On Connection
 mongoose.connection.on('connected', () => {
@@ -35,6 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.use('/users', users);
+
+app.use('/admin-users', adminusers);
 
 app.use(passport.initialize());
 app.use(passport.session());
