@@ -258,7 +258,7 @@ var AppModule = /** @class */ (function () {
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(appRoutes),
                 _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatToolbarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatGridListModule"],
-                _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MatCommonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatSidenavModule"]
+                _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MatCommonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatSidenavModule"], _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatStepperModule"],
             ],
             providers: [_services_validate_service__WEBPACK_IMPORTED_MODULE_17__["ValidateService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_18__["AuthService"], _guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
@@ -607,7 +607,7 @@ module.exports = ".fill-remaining-space {\r\n      flex: 1 1 auto;\r\n      colo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn() && authService.authenticateUser()\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>User Login</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/adminlogin']\"><mat-icon>input</mat-icon><span>Admin Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
+module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>User Login</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/adminlogin']\"><mat-icon>input</mat-icon><span>Admin Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
 
 /***/ }),
 
@@ -752,7 +752,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.example-container > * {\r\n  width: 100%;\r\n}\r\n\r\nmat-card {\r\n  max-width: 600px;\r\n  margin: 2em auto;\r\n  text-align: center;\r\n}\r\n\r\n.signin-content {\r\n  padding: 60px 1rem;\r\n}\r\n\r\n.full-width-input {\r\n  width: 100%;\r\n}"
+module.exports = ".example-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.example-container > * {\r\n  width: 100%;\r\n}\r\n\r\nmat-card {\r\n  max-width: 750px;\r\n  margin: 2em auto;\r\n  text-align: center;\r\n}\r\n\r\n.signin-content {\r\n  padding: 60px 1rem;\r\n}\r\n\r\n.full-width-input {\r\n  width: 100%;\r\n}"
 
 /***/ }),
 
@@ -763,7 +763,7 @@ module.exports = ".example-container {\r\n  display: flex;\r\n  flex-direction: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n<form>\n<h3>Register</h3>\n  <div class=\"example-container\">\n  <mat-form-field>\n    <input matInput name=\"name\" placeholder=\"name\" [(ngModel)]=\"name\" ngControl=\"name\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput name=\"username\" placeholder=\"username\" [(ngModel)]=\"username\" ngControl=\"username\" required>\n  </mat-form-field>\n\n  <mat-form-field>\n    <input matInput name=\"email\" placeholder=\"email\" [(ngModel)]=\"email\" ngControl=\"email\" required>\n  </mat-form-field>\n\n <mat-form-field>\n    <input matInput name=\"password\" placeholder=\"password\" [(ngModel)]=\"password\" ngControl=\"password\" required [type]=\"hide ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\n  </mat-form-field>\n  \n</div>\n</form>\n<button mat-button color=\"primary\" (click)=\"onRegisterSubmit()\" type=\"button\">Submit</button>\n</mat-card>\n\n"
+module.exports = "\n<mat-horizontal-stepper [linear]=\"isLinear\" #stepper>\n  <mat-step [stepControl]=\"firstFormGroup\">\n    <mat-card class=\"mat-card\">\n    <form>\n    <ng-template matStepLabel>Fill out your profile</ng-template>\n    <div class=\"example-container\">\n    <mat-form-field>\n      <input matInput name=\"name\" placeholder=\"name\" [(ngModel)]=\"name\" ngControl=\"name\" required>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput name=\"username\" placeholder=\"username\" [(ngModel)]=\"username\" ngControl=\"username\" required>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput name=\"email\" placeholder=\"email\" [(ngModel)]=\"email\" ngControl=\"email\" required>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput name=\"password\" placeholder=\"password\" [(ngModel)]=\"password\" ngControl=\"password\" required [type]=\"hide ? 'password' : 'text'\">\n      <mat-icon matSuffix (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\n    </mat-form-field>\n    <div>\n      <button mat-button matStepperNext>Next</button>\n    </div>\n    </div>\n    </form>\n    </mat-card>\n  </mat-step>\n  <mat-step [stepControl]=\"secondFormGroup\">\n    <mat-card class=\"mat-card\">\n    <form>\n      <ng-template matStepLabel>Fill out your career details</ng-template>\n      <div class=\"example-container\">\n      <mat-form-field>\n        <mat-select matInput name=\"university\" placeholder=\"University\" [(ngModel)]=\"university\" ngControl=\"university\">\n          <mat-option>None</mat-option>\n          <mat-option *ngFor=\"let uni of university\" [value]=\"uni\">{{uni}}</mat-option>\n        </mat-select>\n      </mat-form-field>\n\n      <mat-form-field>\n        <mat-select matInput name=\"course\" placeholder=\"Course\" [(ngModel)]=\"course\" ngControl=\"course\">\n          <mat-option>None</mat-option>\n          <mat-option *ngFor=\"let co of course\" [value]=\"co\">{{co}}</mat-option>\n        </mat-select>\n      </mat-form-field>\n\n      <mat-form-field>\n        <mat-select matInput name=\"career\" placeholder=\"Career\" [(ngModel)]=\"career\" ngControl=\"career\">\n          <mat-option>None</mat-option>\n          <mat-option *ngFor=\"let ca of career\" [value]=\"ca\">{{ca}}</mat-option>\n        </mat-select>\n      </mat-form-field>\n\n      <mat-form-field>\n        <mat-select matInput name=\"skill\" placeholder=\"Skill\" [(ngModel)]=\"skill\" ngControl=\"skill\">\n          <mat-option>None</mat-option>\n          <mat-option *ngFor=\"let ski of skill\" [value]=\"ski\">{{ski}}</mat-option>\n        </mat-select>\n      </mat-form-field>\n      <div>\n        <button mat-button matStepperPrevious>Back</button>\n        <button mat-button color=\"primary\" (click)=\"onRegisterSubmit()\" type=\"button\">Submit</button>\n      </div>\n      </div>\n    </form>\n    </mat-card>\n  </mat-step>\n</mat-horizontal-stepper>"
 
 /***/ }),
 
@@ -802,6 +802,7 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
         this.toastr = toastr;
         this.router = router;
+        this.isLinear = false;
         this.hide = true;
     }
     RegisterComponent.prototype.ngOnInit = function () {
@@ -812,7 +813,11 @@ var RegisterComponent = /** @class */ (function () {
             name: this.name,
             email: this.email,
             username: this.username,
-            password: this.password
+            password: this.password,
+            university: this.university,
+            course: this.course,
+            career: this.career,
+            skill: this.skill
         };
         //Unique fields
         if (!this.validateService.validateRegister(user)) {

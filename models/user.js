@@ -4,38 +4,14 @@ import config from '../config/database';
 
 var uniqueValidator = require('mongoose-unique-validator');
 const UserSchema = mongoose.Schema({
-    name: {
-        type: String
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    university:{
-        type: String,
-        required: true
-    },
-    course:{
-        type: String,
-        required: true
-    },
-    career:{
-        type: String,
-        required: true
-    },
-    skill:{
-        type: String,
-        required: true
-    }
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    university:{type: String },
+    course:{ type: String },
+    career:{ type: String },
+    skill:{ type: String }
 });
 
 UserSchema.plugin(uniqueValidator, { message: 'Error, expected to be unique.'});
