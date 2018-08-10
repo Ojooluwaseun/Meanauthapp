@@ -72,6 +72,7 @@ var AuthService = /** @class */ (function () {
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
+        this.isAdmin = user.isAdmin;
     };
     //getPofile(){
     //let headers = new HttpHeaders();
@@ -607,7 +608,7 @@ module.exports = ".fill-remaining-space {\r\n      flex: 1 1 auto;\r\n      colo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>User Login</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/adminlogin']\"><mat-icon>input</mat-icon><span>Admin Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
+module.exports = "<mat-toolbar>\n\n<span>\n  <h3>MEAN APP</h3>\n</span>\n<button mat-icon-button [matMenuTriggerFor]=\"menu\">\n  <mat-icon>more_vert</mat-icon>\n</button>\n<mat-menu #menu=\"matMenu\">\n  <button mat-menu-item [routerLink]=\"['']\">\n    <mat-icon>home</mat-icon>\n    <span>Home</span>\n  </button>\n  <button *ngIf=\"authService.loggedIn()\" mat-menu-item [routerLink]=\"['/dashboard']\">\n    <mat-icon>dialpad</mat-icon>\n    <span>Dashboard</span>\n  </button>\n  <button *ngIf=\"!authService.isAdmin\" mat-menu-item [routerLink]=\"['/profile']\">\n    <mat-icon>person</mat-icon>\n    <span>Profile</span>\n  </button>\n</mat-menu>\n<span class=\"fill-remaining-space\"></span>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/register']\"><mat-icon>person_add</mat-icon><span>Register</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/login']\"><mat-icon>input</mat-icon><span>User Login</span></button>\n  <button *ngIf=\"!authService.loggedIn()\" mat-button [routerLink]=\"['/adminlogin']\"><mat-icon>input</mat-icon><span>Admin Login</span></button>\n  <button *ngIf=\"authService.loggedIn()\" mat-button (click)=\"onLogoutClick()\" href=\"#\"><mat-icon>input</mat-icon><span>Logout</span></button>\n</mat-toolbar>\n\n"
 
 /***/ }),
 
@@ -687,7 +688,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div *ngIf=\"user\">\n  <mat-card>\n  <h2 class=\"page-header\">Welcome {{user.name}}</h2>\n  <ul class = \"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n  </ul>\n  </mat-card>\n</div>\n"
+module.exports = "\n<div *ngIf=\"user\">\n  <mat-card>\n  <h2 class=\"page-header\">Welcome {{user.name}}</h2>\n  <ul class = \"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n    <li class=\"list-group-item\">University: {{user.university}}</li>\n    <li class=\"list-group-item\">Course of Study: {{user.course}}</li>\n    <li class=\"list-group-item\">Career Path: {{user.career}}</li>\n    <li class=\"list-group-item\">Skill Set: {{user.skills}}</li>\n  </ul>\n  </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -957,6 +958,7 @@ var AuthService = /** @class */ (function () {
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
+        this.isAdmin = user.isAdmin;
     };
     //getPofile(){
     //let headers = new HttpHeaders();

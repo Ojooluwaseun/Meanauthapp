@@ -18,6 +18,7 @@
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
+    "mongoose-default-values": "^1.0.7",
     "mongoose-unique-validator": "^2.0.1",
     "passport": "*",
     "passport-jwt": "*"

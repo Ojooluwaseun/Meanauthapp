@@ -11,12 +11,41 @@ router.post('/register', (req, res, next) => {
     User.addUser(newUser, (err, user) => {
         if (err){
             res.json({success: false, msg:'Failed to add user'})
+            console.log(err)
         }
         else{
             res.json({success: true, msg:'User added successfully'})
         }
     })
 })
+
+router.route('/update/:id').post((req, res) => {
+    User.findById(req.params.id)
+    .select("-password")
+    .exec(function(err, user){
+        if(!user){
+            res.status(400).send('oops! user not found')}
+        else {
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.username = req.body.username;
+            user.university = req.body.university;
+            user.course = req.body.course;
+            user.career = req.body.career;
+            user.skills = req.body.skills;
+
+            user.save()
+            .then(user => {
+                res.json('Update done');
+            })
+            .catch(err => {
+                res.status(400).send('Update failed')
+                console.log(err.message);
+            });
+        }
+    });
+})
+
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -41,7 +70,8 @@ router.post('/authenticate', (req, res, next) => {
                         id: user._id,
                         name: user.name,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        isAdmin: user.isAdmin
                     }
                 })
             }
@@ -50,6 +80,16 @@ router.post('/authenticate', (req, res, next) => {
             }
         })
     })
+});
+
+router.route('/all').get((req, res) => {
+    User.find((err, user) => {
+        if (err){
+            res.status(400).send("Failed to get users")
+            console.log(err.message)}
+        else
+            res.json(user);
+    });
 });
 
 router.get('/profile', passport.authenticate('jwt',{session:false}), (req, res, next) => {

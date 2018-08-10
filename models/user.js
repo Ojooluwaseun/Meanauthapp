@@ -3,7 +3,8 @@ import bcrypt from 'bcryptjs';
 import config from '../config/database';
 
 var uniqueValidator = require('mongoose-unique-validator');
-const UserSchema = mongoose.Schema({
+var defaultValues = require('mongoose-default-values')
+let UserSchema = mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -11,12 +12,15 @@ const UserSchema = mongoose.Schema({
     university:{type: String },
     course:{ type: String },
     career:{ type: String },
-    skill:{ type: String }
+    skills:[String],
+    isAdmin: {type: Boolean},
+    registerDate: {type: Date, default:Date.now()},
 });
 
 UserSchema.plugin(uniqueValidator, { message: 'Error, expected to be unique.'});
+UserSchema.plugin(defaultValues);
 
-const User = module.exports =mongoose.model('User', UserSchema);
+let User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);

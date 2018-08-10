@@ -41,7 +41,8 @@ router.post('/authenticate', (req, res, next) => {
                         id: adminuser._id,
                         name: adminuser.name,
                         username: adminuser.username,
-                        email: adminuser.email
+                        email: adminuser.email,
+                        isAdmin:adminuser.isAdmin
                     }
                 })
             }
@@ -52,8 +53,18 @@ router.post('/authenticate', (req, res, next) => {
     })
 });
 
+router.route('/all').get((req, res) => {
+    adminUser.find((err, adminUser) => {
+        if (err){
+            res.status(400).send("Failed to get users")
+            console.log(err.message)}
+        else
+            res.json(adminUser);
+    });
+});
+
 router.get('/profile', passport.authenticate('jwt',{session:false}), (req, res, next) => {
-    res.json({adminuser: req.adminuser});
+    res.json({user: req.user});
 });
 
 

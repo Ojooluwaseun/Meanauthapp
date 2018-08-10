@@ -3,16 +3,18 @@ import bcrypt from 'bcryptjs';
 import config from '../config/database';
 
 var uniqueValidator = require('mongoose-unique-validator');
-const adminUserSchema = mongoose.Schema({
+let adminUserSchema = mongoose.Schema({
     name: { type: String},
     email: { type: String, required: true },
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    isAdmin: {type: Boolean, default:true  },
+    registerDate: {type: Date, default:Date.now()},
+
 });
 
 adminUserSchema.plugin(uniqueValidator, { message: 'Error, expected to be unique.'});
-
-const adminUser = module.exports =mongoose.model('adminUser', adminUserSchema);
+let adminUser = module.exports = mongoose.model('adminUser', adminUserSchema);
 
 module.exports.getUserById = function(id, callback) {
     adminUser.findById(id, callback);
