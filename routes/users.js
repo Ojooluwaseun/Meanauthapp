@@ -10,14 +10,48 @@ router.post('/register', (req, res, next) => {
     let newUser = new User(req.body);
     User.addUser(newUser, (err, user) => {
         if (err){
-            res.json({success: false, msg:'Failed to add user'})
-            console.log(err)
+            // res.json({success: false, msg:'Failed to add user'})
+            // console.log(err)
+            // Check if any validation errors exists (from user model)
+            if (err.errors !== null) {
+                if (err.errors.name) {
+                    res.json({ success: false, message: err.errors.name.message }); // Display error in validation (name)
+                } else if (err.errors.email) {
+                    res.json({ success: false, message: err.errors.email.message }); // Display error in validation (email)
+                } else if (err.errors.username) {
+                    res.json({ success: false, message: err.errors.username.message }); // Display error in validation (username)
+                } else if (err.errors.password) {
+                    res.json({ success: false, message: err.errors.password.message }); // Display error in validation (password)
+                } else {
+                    res.json({ success: false, message: err }); // Display any other errors with validation
+                }
+            } else if (err) {
+                // Check if duplication error exists
+                if (err.code == 11000) {
+                    if (err.errmsg[61] == "u") {
+                        res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
+                    } else if (err.errmsg[61] == "e") {
+                        res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
+                    }
+                } else {
+                    res.json({ success: false, message: err }); // Display any other error
+                }
+            }
         }
         else{
             res.json({success: true, msg:'User added successfully'})
         }
     })
 })
+
+// router.route('/:id').get((req, res) => {
+//     User.findById(req.params.id, (err, user) => {
+//         if (err)
+//             console.log(err);
+//         else
+//             res.json(user);
+//     });
+// });
 
 router.route('/update/:id').post((req, res) => {
     User.findById(req.params.id)
@@ -53,7 +87,7 @@ router.post('/authenticate', (req, res, next) => {
     User.getUserByUsername(username, (err, user) => {
         if(err) throw err;
         if(!user){
-            return res.json({success:false, msg: 'User not found'})
+            return res.json({success:false, msg: 'Oops! User not found'})
         }
 
         User.comparePassword(password, user.password, (err, isMatch) => {

@@ -20,6 +20,7 @@
     "mongoose": "*",
     "mongoose-default-values": "^1.0.7",
     "mongoose-unique-validator": "^2.0.1",
+    "mongoose-validator": "^2.1.0",
     "passport": "*",
     "passport-jwt": "*"
   },
